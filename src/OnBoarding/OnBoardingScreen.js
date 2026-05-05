@@ -17,7 +17,7 @@ import ResultsPage from './pages/ResultsPage';
 import { calculateMacros } from './pages/ResultsPage';
 
 
-export default function OnboardingScreen({ navigation }) {
+export default function OnboardingScreen({ onOnboarded }) {
 
 
 
@@ -93,7 +93,7 @@ export default function OnboardingScreen({ navigation }) {
         await Notifications.requestPermissionsAsync();
         await ImagePicker.requestCameraPermissionsAsync();
         setShowPermissions(false);
-        navigation.replace('MainApp');
+        onOnboarded();
     };
 
     return (

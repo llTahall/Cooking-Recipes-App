@@ -65,7 +65,9 @@ export default function AppNavigator() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {!hasOnboarded ? (
-                    <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+                    <Stack.Screen name="Onboarding">
+                        {props => <OnboardingScreen {...props} onOnboarded={() => setHasOnboarded(true)} />}
+                    </Stack.Screen>
                 ) : (
                     <Stack.Screen name="MainApp" component={TabNavigator} />
                 )}

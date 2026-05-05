@@ -1,4 +1,3 @@
-# NutriFlow 🍽️
 
 A mobile app for recipe management and nutrition tracking, built with React Native + Expo.
 

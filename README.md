@@ -1,5 +1,5 @@
 
-A mobile app for recipe management and nutrition tracking, built with React Native + Expo.
+##A mobile app for recipe management and nutrition tracking, built with React Native + Expo.
 
 ## Features
 

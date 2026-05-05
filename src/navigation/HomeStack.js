@@ -1,11 +1,12 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { colors, } from '../constants/colors';
+import { colors } from '../constants/colors';
 import { fonts } from '../constants/theme';
 import HomeScreen from '../screens/HomeScreen';
-import RecipeDetailScreen from '../screens/RecipeDetailScreen';
-import AddRecipeScreen from '../screens/AddRecipeScreen';
-import EditRecipeScreen from '../screens/EditRecipeScreen';
+
+
+import ApiMealDetailScreen from '../screens/ApiMealDetailScreen';
+import CuisineListScreen from '../screens/CuisineListScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,10 +21,10 @@ export default function HomeStack() {
                 animation: 'slide_from_right',
             }}
         >
-            <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'RecipeBox' }} />
-            <Stack.Screen name="RecipeDetail" component={RecipeDetailScreen} options={{ title: '' }} />
-            <Stack.Screen name="AddRecipe" component={AddRecipeScreen} options={{ title: 'New Recipe' }} />
-            <Stack.Screen name="EditRecipe" component={EditRecipeScreen} options={{ title: 'Edit Recipe' }} />
+            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+
+            <Stack.Screen name="ApiMealDetail" component={ApiMealDetailScreen} options={{ title: '' }} />
+            <Stack.Screen name="CuisineList" component={CuisineListScreen} options={{ title: '' }} />
         </Stack.Navigator>
     );
 }

@@ -2,26 +2,31 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
+const initialWeek = Object.fromEntries(DAYS.map(d => [d, []]));
+
 const plannerSlice = createSlice({
     name: 'planner',
-    initialState: {
-        week: DAYS.reduce((acc, day) => ({ ...acc, [day]: null }), {}),
-        notificationsEnabled: false,
-    },
+    initialState: { week: initialWeek },
     reducers: {
-        setMealForDay: (state, action) => {
-            const { day, recipe } = action.payload;
-            state.week[day] = recipe;
+        setWeek: (state, action) => {
+            state.week = action.payload;
+        },
+        addMealToDay: (state, action) => {
+            const { day, meal } = action.payload;
+            state.week[day].push(meal);
         },
         removeMealFromDay: (state, action) => {
-            state.week[action.payload] = null;
+            const { day, id } = action.payload;
+            state.week[day] = state.week[day].filter(m => m.id !== id);
         },
-        setWeek: (state, action) => { state.week = action.payload; },
-        setNotificationsEnabled: (state, action) => {
-            state.notificationsEnabled = action.payload;
+        updateMealInDay: (state, action) => {
+            const { day, meal } = action.payload;
+            const idx = state.week[day].findIndex(m => m.id === meal.id);
+            if (idx !== -1) state.week[day][idx] = meal;
         },
+
     },
 });
 
-export const { setMealForDay, removeMealFromDay, setWeek, setNotificationsEnabled } = plannerSlice.actions;
+export const { setWeek, addMealToDay, removeMealFromDay, updateMealInDay } = plannerSlice.actions;
 export default plannerSlice.reducer;
